@@ -635,7 +635,7 @@ public final class StringConcatFactory {
             MethodHandle prepend = JLA.stringConcatHelper("prepend",
                     methodType(long.class, long.class, byte[].class,
                             Wrapper.asPrimitiveType(c), String.class));
-            return prepend.rebind();
+            return prepend;
         }
     };
 
@@ -652,7 +652,7 @@ public final class StringConcatFactory {
         public MethodHandle apply(Class<?> c) {
             MethodHandle mix = JLA.stringConcatHelper("mix",
                     methodType(long.class, long.class, Wrapper.asPrimitiveType(c)));
-            return mix.rebind();
+            return mix;
         }
     };
 
@@ -662,7 +662,7 @@ public final class StringConcatFactory {
         if (mh == null) {
             MethodHandle simpleConcat = JLA.stringConcatHelper("simpleConcat",
                     methodType(String.class, Object.class, Object.class));
-            SIMPLE_CONCAT = mh = simpleConcat.rebind();
+            SIMPLE_CONCAT = mh = simpleConcat;
         }
         return mh;
     }
@@ -673,7 +673,7 @@ public final class StringConcatFactory {
         if (mh == null) {
             MethodHandle newString = JLA.stringConcatHelper("newString",
                     methodType(String.class, byte[].class, long.class));
-            NEW_STRING = mh = newString.rebind();
+            NEW_STRING = mh = newString;
         }
         return mh;
     }
@@ -684,7 +684,7 @@ public final class StringConcatFactory {
         if (mh == null) {
             MethodHandle newArrayWithSuffix = JLA.stringConcatHelper("newArrayWithSuffix",
                     methodType(byte[].class, String.class, long.class));
-            NEW_ARRAY_SUFFIX = mh = newArrayWithSuffix.rebind();
+            NEW_ARRAY_SUFFIX = mh = newArrayWithSuffix;
         }
         return MethodHandles.insertArguments(mh, 0, suffix);
     }
