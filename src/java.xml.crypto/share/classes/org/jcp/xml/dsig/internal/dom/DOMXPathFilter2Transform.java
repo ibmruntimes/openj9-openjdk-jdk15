@@ -21,14 +21,14 @@
  * under the License.
  */
 /*
+ * Copyright (c) 2005, 2019, Oracle and/or its affiliates. All rights reserved.
+ */
+/*
  * ===========================================================================
  *
  * (C) Copyright IBM Corp. 2003 All Rights Reserved.
  *
  * ===========================================================================
- */
-/*
- * Copyright (c) 2005, 2019, Oracle and/or its affiliates. All rights reserved.
  */
 /*
  * $Id: DOMXPathFilter2Transform.java 1854026 2019-02-21 09:30:01Z coheigea $
