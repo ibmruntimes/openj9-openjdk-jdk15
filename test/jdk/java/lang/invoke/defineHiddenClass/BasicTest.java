@@ -120,7 +120,7 @@ public class BasicTest {
         assertTrue(c.getCanonicalName() == null);
 
         String hcName = "HiddenClass";
-        String hcSuffix = "0x[0-9a-f]+";
+        String hcSuffix = "[0-9a-fA-F]+";
         assertTrue(c.getName().matches(hcName + "/" + hcSuffix));
         assertTrue(c.descriptorString().matches("L" + hcName + "." + hcSuffix + ";"), c.descriptorString());
 
@@ -148,7 +148,7 @@ public class BasicTest {
         assertFalse(arrayType.isHidden());
 
         String hcName = "HiddenClass";
-        String hcSuffix = "0x[0-9a-f]+";
+        String hcSuffix = "[0-9a-fA-F]+";
         assertTrue(arrayType.getName().matches("\\[" + "L" + hcName + "/" + hcSuffix + ";"));
         assertTrue(arrayType.descriptorString().matches("\\[" + "L" + hcName + "." + hcSuffix + ";"));
 

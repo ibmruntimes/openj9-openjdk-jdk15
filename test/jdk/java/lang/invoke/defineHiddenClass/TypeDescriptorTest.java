@@ -113,11 +113,11 @@ public class TypeDescriptorTest {
     private Object[][] typeDescriptors() throws Exception {
         Class<?> hcArray = Array.newInstance(HC, 1, 1).getClass();
         return new Object[][] {
-                new Object[] { HC, "Ltest/HiddenClass.0x[0-9a-f]+;"},
-                new Object[] { hcArray, "\\[\\[Ltest/HiddenClass.0x[0-9a-f]+;"},
-                new Object[] { methodType(HC), "\\(\\)Ltest/HiddenClass.0x[0-9a-f]+;" },
-                new Object[] { methodType(void.class, HC), "\\(Ltest/HiddenClass.0x[0-9a-f]+;\\)V" },
-                new Object[] { methodType(void.class, HC, int.class, Object.class), "\\(Ltest/HiddenClass.0x[0-9a-f]+;ILjava/lang/Object;\\)V" }
+                new Object[] { HC, "Ltest/HiddenClass.[0-9a-fA-F]+;"},
+                new Object[] { hcArray, "\\[\\[Ltest/HiddenClass.[0-9a-fA-F]+;"},
+                new Object[] { methodType(HC), "\\(\\)Ltest/HiddenClass.[0-9a-fA-F]+;" },
+                new Object[] { methodType(void.class, HC), "\\(Ltest/HiddenClass.[0-9a-fA-F]+;\\)V" },
+                new Object[] { methodType(void.class, HC, int.class, Object.class), "\\(Ltest/HiddenClass.[0-9a-fA-F]+;ILjava/lang/Object;\\)V" }
         };
     }
 
@@ -146,9 +146,9 @@ public class TypeDescriptorTest {
     private Object[][] methodTypes() throws Exception {
         Class<?> hcArray = Array.newInstance(HC, 1, 1).getClass();
         return new Object[][] {
-                new Object[] { methodType(HC), "\\(\\)Ltest/HiddenClass.0x[0-9a-f]+;" },
-                new Object[] { methodType(void.class, hcArray), "\\(\\[\\[Ltest/HiddenClass.0x[0-9a-f]+;\\)V" },
-                new Object[] { methodType(void.class, int.class, HC), "\\(ILtest/HiddenClass.0x[0-9a-f]+;\\)V" }
+                new Object[] { methodType(HC), "\\(\\)Ltest/HiddenClass.[0-9a-fA-F]+;" },
+                new Object[] { methodType(void.class, hcArray), "\\(\\[\\[Ltest/HiddenClass.[0-9a-fA-F]+;\\)V" },
+                new Object[] { methodType(void.class, int.class, HC), "\\(ILtest/HiddenClass.[0-9a-fA-F]+;\\)V" }
         };
     }
 
