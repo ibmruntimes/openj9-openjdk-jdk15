@@ -83,8 +83,6 @@ OPENJ9_ENABLE_OPENJDK_METHODHANDLES := @OPENJ9_ENABLE_OPENJDK_METHODHANDLES@
 
 # for constructing version output
 COMPILER_VERSION_STRING := @COMPILER_VERSION_STRING@
-USERNAME                := @USERNAME@
-OPENJDK_SHA             := @OPENJDK_SHA@
 
 include $(TOPDIR)/closed/openjdk-tag.gmk
 
@@ -93,8 +91,8 @@ J9JDK_EXT_VERSION       := HEAD
 J9JDK_EXT_NAME          := Extensions for OpenJDK for Eclipse OpenJ9
 
 # required by CMake
-export CMAKE               := @CMAKE@
-export OPENJ9_ENABLE_CMAKE := @OPENJ9_ENABLE_CMAKE@
+CMAKE                   := @CMAKE@
+OPENJ9_ENABLE_CMAKE     := @OPENJ9_ENABLE_CMAKE@
 
 # required by UMA
 FREEMARKER_JAR          := @FREEMARKER_JAR@
@@ -104,6 +102,9 @@ OPENJ9_BUILDSPEC        := @OPENJ9_BUILDSPEC@
 OPENJ9_PLATFORM_CODE    := @OPENJ9_PLATFORM_CODE@
 
 OPENJ9_LIBS_SUBDIR      := @OPENJ9_LIBS_SUBDIR@
+
+# Mixed References Mode
+OMR_MIXED_REFERENCES_MODE := @OMR_MIXED_REFERENCES_MODE@
 
 # Export autoconf cache variables for CC/CXX.
 # This is for the case where ccache is enabled.
@@ -144,18 +145,22 @@ else
 	$1
 endif
 
-# OPENSSL
+# OpenSSL
 BUILD_OPENSSL           := @BUILD_OPENSSL@
 OPENSSL_BUNDLE_LIB_PATH := @OPENSSL_BUNDLE_LIB_PATH@
 OPENSSL_CFLAGS          := @OPENSSL_CFLAGS@
 OPENSSL_DIR             := @OPENSSL_DIR@
 WITH_OPENSSL            := @WITH_OPENSSL@
 
+# Use '=' instead of ':=' because bootcycle-spec.gmk overrides OUTPUTDIR.
 ifeq (true,$(OPENJ9_ENABLE_CMAKE))
-  OPENJ9_VM_BUILD_DIR := $(OUTPUTDIR)/vm/runtime
+  OPENJ9_VM_BUILD_DIR = $(OUTPUTDIR)/vm/runtime
 else
-  OPENJ9_VM_BUILD_DIR := $(OUTPUTDIR)/vm
+  OPENJ9_VM_BUILD_DIR = $(OUTPUTDIR)/vm
 endif
+
+J9JCL_SOURCES_DIR      := $(SUPPORT_OUTPUTDIR)/j9jcl
+J9JCL_SOURCES_DONEFILE := $(MAKESUPPORT_OUTPUTDIR)/j9jcl.done
 
 # Disable all hotspot features.
 JVM_FEATURES_server :=
